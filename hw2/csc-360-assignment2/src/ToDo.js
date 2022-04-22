@@ -13,7 +13,7 @@ export default function ToDo({ title, desc, dateCreated }) {
     <div>
       <h3>{title}</h3>
       <div>{desc}</div>
-      <p></p>Date Created: {dateCreate}
+      <p></p>Date Created: {dateCreated}
       <br />
       <div>
         <input type="checkbox" id="complete" value={complete} onChange={handleComplete} />{complete ? "Done" : "Note done"}

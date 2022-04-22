@@ -3,12 +3,12 @@ import React, {useState} from "react";
 export default function CreateToDo( {user, toDos, setToDos} ) {
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
-  //const [date, setDate] = useState("")
-  let date = Date.now();
+  const [date, setDate] = useState("")
+  
   function handleTitle (evt) { setTitle(evt.target.value); }
   function handleDesc (evt) { setDesc(evt.target.value); }
   function handleCreate (evt) {
-    date = Date.now();
+    setDate(Date.now());
     const newToDo = { title, desc, date };
     setToDos( [newToDo, ...toDos] );
   }
