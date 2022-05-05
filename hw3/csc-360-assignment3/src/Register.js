@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 
-export default function Register({ setUser }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
+export default function Register({dispatch}) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordRepeat: ""
   });
 
-  //function handleUsername(evt) { setUsername(evt.target.value); }
-  //function handlePassword(evt) { setPassword(evt.target.value); }
-  //function handlePasswordRepeat(evt) { setPasswordRepeat(evt.target.value); }
   
   return (
-    <form onSubmit={(e) => {e.preventDefault(); setUser(formData.username);} }>
+    <form onSubmit={(e) => { e.preventDefault(); dispatch({type: 'REGISTER', username: formData.username}) }}>
       <label htmlFor="register-username">Username:</label>
       <input type="text" value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} name="register-username" id="register-username" />
       
@@ -31,7 +25,7 @@ export default function Register({ setUser }) {
 	id="register-password-repeat" 
       />
       
-      <input type="submit" value="Register" disabled={username.length === 0 || password.length === 0 || password !== passwordRepeat} />
+      <input type="submit" value="Register" disabled={formData.username.length === 0 || formData.password.length === 0 || formData.password !== formData.passwordRepeat} />
     </form>
   );
 }
