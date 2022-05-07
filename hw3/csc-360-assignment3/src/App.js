@@ -13,7 +13,7 @@ function App() {
       <UserBar user={user} dispatch={dispatch} />
       <br/>
       {user && <CreateToDo user={user} todos={todos} dispatch={dispatch} />}
-      <ToDoList todos={todos} />
+      <ToDoList todos={todos} dispatch={dispatch} />
     </div>
   );
 }

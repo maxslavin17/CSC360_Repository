@@ -17,14 +17,21 @@ function todoReducer (state, action) {
         title: action.title,
         desc: action.desc,
         author: action.author,
-	dateCreated: action.dateCreated
+	dateCreated: Date.now(),
+	complete: false
       };
       return [newTodo, ...state];
     case 'TOGGLE_TODO':
-      if (action.completed)
-        return (state.filter(todo => todo.key === action.dateCreated)).map(todo => todo.completed = action.completed);
+      return state.map(todo => {
+        if (todo.dateCreated === action.dateCreated)
+          return {
+	    ...todo,
+            complete: !todo.complete
+          };
+	return todo;
+      })
     case 'DELETE_TODO':
-      state = state.filter(todo => action.completed === true);
+      return state.filter(todo => todo.dateCreated !== action.dateCreated);
     default:
       return state;
   }

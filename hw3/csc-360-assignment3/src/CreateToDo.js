@@ -7,7 +7,7 @@ export default function CreateToDo({ user, todos, dispatch }) {
   function handleTitle (evt) { setTitle(evt.target.value); }
   function handleDesc (evt) { setDesc(evt.target.value); }
   function handleCreate () {
-    dispatch({ type: 'CREATE_TODO', title, desc, author: user, dateCreated: Date.now() })
+    dispatch({ type: 'CREATE_TODO', title, desc, author: user })
   }
 
   return (

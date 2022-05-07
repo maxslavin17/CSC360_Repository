@@ -6,7 +6,7 @@ export default function ToDoList({ todos=[], dispatch }) {
   return (
     <div>
       {todos.map((t, i) => (
-        <ToDo {...t} key={"todo-" + i} dispatch={dispatch}/>
+          <ToDo {...t} key={"todo-" + i} dispatch={dispatch}/>
       ))}
     </div>
   );
