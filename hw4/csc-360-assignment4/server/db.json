@@ -1,0 +1,32 @@
+{
+  "todos": [
+    {
+      "title": "Do Laundry",
+      "desc": "Wash, dry, and fold",
+      "author": "testuser",
+      "dateCompleted": null,
+      "completed": false
+    },
+    {
+      "title": "Pay Bills",
+      "desc": "Car, Electric, Gas",
+      "author": "testuser",
+      "dateCompleted": null,
+      "completed": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "testuser",
+      "password": "badpassword"
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "coral"
+    }
+  ]
+}

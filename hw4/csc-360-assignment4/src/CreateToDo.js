@@ -1,13 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {StateContext} from './contexts';
 
-export default function CreateToDo({ user, todos, dispatch }) {
+export default function CreateToDo() {
+  const stateContext = useContext(StateContext)
+  const state = stateContext.state
+  const dispatch = stateContext.dispatch
+  
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
 
   function handleTitle (evt) { setTitle(evt.target.value); }
   function handleDesc (evt) { setDesc(evt.target.value); }
   function handleCreate () {
-    dispatch({ type: 'CREATE_TODO', title, desc, author: user })
+    dispatch({ type: 'CREATE_TODO', title, desc, author: state.user, dateCreated: Date.now(), dateCompleted: undefined, completed: false })
   }
 
   return (
@@ -15,7 +20,7 @@ export default function CreateToDo({ user, todos, dispatch }) {
     <h2>Create a Task</h2>
     <form onSubmit={ (e) => {e.preventDefault(); handleCreate()} }>
       <div>
-        Author: <b>{user}</b>
+        Author: <b>{state.user}</b>
       </div>
       <div>
         <label htmlFor="create-title">Title:</label>

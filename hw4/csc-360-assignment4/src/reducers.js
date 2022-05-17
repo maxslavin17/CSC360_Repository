@@ -17,21 +17,21 @@ function todoReducer (state, action) {
         title: action.title,
         desc: action.desc,
         author: action.author,
-	dateCreated: Date.now(),
+	dateCreated: action.dateCreated,
+	dateCompleted: action.dateCompleted,
 	complete: false
       };
       return [newTodo, ...state];
     case 'TOGGLE_TODO':
-      return state.map(todo => {
-        if (todo.dateCreated === action.dateCreated)
-          return {
-	    ...todo,
-            complete: !todo.complete
-          };
-	return todo;
-      })
+      const updatedTodos = action.todos.map(	
+            (todo) => todo.dateCompleted === action.dateCompleted ? action.updatedTodo : todo
+      );
+      return updatedTodos;
     case 'DELETE_TODO':
-      return state.filter(todo => todo.dateCreated !== action.dateCreated);
+      const oneLessTodo = action.todos.filter((todo) => todo.dateCreated !== action.dateCreated);
+      return oneLessTodo;
+    case 'FETCH_TODOS':
+      return action.todos;
     default:
       return state;
   }

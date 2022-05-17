@@ -1,33 +1,33 @@
-import React, { useState, useReducer, useEffect, createContext } from 'react';
-import appReducer from './reducers'
+import React, { useState, useReducer, useEffect, useContext } from 'react';
+import appReducer from './reducers';
+import { StateContext } from './contexts';
 import UserBar from './UserBar';
-import Header from './Header';
 import ToDoList from './ToDoList';
 import CreateToDo from './CreateToDo';
 
 function App() {
-  const [state, dispatch] = useReducer(appReducer, { user: '', todos: [] })
-  const { user, todos } = state
+  const [appState, appDispatch] = useReducer(appReducer, { user: '', todos: [] })
+  const data = {
+    state: appState,
+    dispatch: appDispatch
+  };
 
   useEffect(() => {
-    if (user) 
-      document.title = `${user}'s Blog`
-    else
-      document.title = 'Blog'
-  }, [user])
+    fetch('/api/todos')
+      .then(result => result.json())
+      .then(todos => data.dispatch({ type: 'FETCH_TODOS', todos }))
+  }, [])
 
   return (
     <div>
-      <ThemeContext.Provider value={{primary:'yellow'}}>
-        <Header text='My Blog' />
-      </ThemeContext.Provider>
-      <UserBar user={user} dispatch={dispatch} />
-      <br/>
-      {user && <CreateToDo user={user} todos={todos} dispatch={dispatch} />}
-      <ToDoList todos={todos} dispatch={dispatch} />
+      <StateContext.Provider value={data}>
+        <UserBar />
+        <br/>
+        {data.state.user && <CreateToDo />}
+        <ToDoList />
+      </StateContext.Provider>
     </div>
   );
 }
 
-export const ThemeContext = createContext({primary:'red'});
 export default App;
