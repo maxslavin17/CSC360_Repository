@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useEffect, useContext } from 'react';
+import { useResource } from 'react-request-hook';
 import appReducer from './reducers';
 import { StateContext } from './contexts';
 import UserBar from './UserBar';
@@ -12,11 +13,17 @@ function App() {
     dispatch: appDispatch
   };
 
+  const [todos, getTodos] = useResource(() => ({
+    url: '/todos',
+    method: 'get'
+  }))
+
+  useEffect(getTodos, [])
+
   useEffect(() => {
-    fetch('/api/todos')
-      .then(result => result.json())
-      .then(todos => data.dispatch({ type: 'FETCH_TODOS', todos }))
-  }, [])
+    if (todos && todos.data) 
+      data.dispatch({ type: 'FETCH_TODOS', todos: todos.data.reverse() })
+  }, [todos])
 
   return (
     <div>
