@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 export default function ToDo({ id, title, desc, author, dateCreated, dateCompleted, completed, updateTodo, deleteTodo }) {
 
-  const [checked, updateChecked] = useState(false) 
+  const [checked, updateChecked] = useState(completed) 
 
   const handleToggle = (event) => {
     updateChecked(event.target.checked)
