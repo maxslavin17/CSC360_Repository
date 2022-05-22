@@ -1,4 +1,6 @@
 {
     "/login/:username/:password": 
-    "/users?username=:username&password=:password"
+    "/users?username=:username&password=:password",
+    "/todos/:id":
+    "/todos?id=:id"
 }

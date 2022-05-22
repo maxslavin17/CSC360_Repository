@@ -2,6 +2,8 @@ import React, {useState, useContext} from "react";
 import { useResource } from 'react-request-hook'
 import {StateContext} from './contexts';
 
+var UUID = require('uuid-js');
+
 export default function CreateToDo() {
   const stateContext = useContext(StateContext)
   const state = stateContext.state
@@ -20,10 +22,22 @@ export default function CreateToDo() {
   }))
 
   function handleCreate () {
-    createTodo({ title, desc, author: state.user, dateCreated: Date.now(), dateCompleted: undefined, completed: false })
-    dispatch({ type: 'CREATE_TODO', title, desc, author: state.user, dateCreated: Date.now(), dateCompleted: undefined, completed: false })
+    createTodo({ 
+	    title, desc, 
+	    author: state.user, 
+	    dateCreated: Date.now(), 
+	    dateCompleted: undefined, 
+	    completed: false })
 
+    dispatch({ 
+	    type: 'CREATE_TODO', 
+	    title, desc, 
+	    author: state.user, 
+	    dateCreated: Date.now(), 
+	    dateCompleted: undefined, 
+	    completed: false })
   }
+
   return (
     <>
     <h2>Create a Task</h2>

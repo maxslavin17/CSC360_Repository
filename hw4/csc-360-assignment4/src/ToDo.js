@@ -1,23 +1,19 @@
 import React, {useState} from 'react';
 
-export default function ToDo({ title, desc, author, dateCreated, dateCompleted, completed, updateTodo, deleteTodo }) {
+export default function ToDo({ id, title, desc, author, dateCreated, dateCompleted, completed, updateTodo, deleteTodo }) {
 
   const [checked, updateChecked] = useState(false) 
 
   const handleToggle = (event) => {
     updateChecked(event.target.checked)
-    const updatedTodo = { 
-	    title, 
-	    desc, 
-	    author, 
-	    dateCreated, 
+    const updatedTodo = { id, title, desc, author, dateCreated, 
 	    dateCompleted: Date.now(), 
 	    completed: !completed 
     }
-    updateTodo(dateCompleted, updatedTodo)
+    updateTodo(id, updatedTodo)
   }
   const handleDelete = (event) => {
-    deleteTodo(dateCreated)
+    deleteTodo(id)
   }
 
   return (
