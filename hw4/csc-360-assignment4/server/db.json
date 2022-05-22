@@ -17,23 +17,6 @@
       "dateCreated": 1,
       "dateCompleted": null,
       "completed": false
-    },
-    {
-      "title": "testTitle",
-      "desc": "testSub",
-      "author": "1",
-      "dateCreated": 1652891495995,
-      "completed": false,
-      "id": 3
-    },
-    {
-      "id": 4,
-      "title": "test",
-      "desc": "test",
-      "author": "test",
-      "dateCreated": 1652900885497,
-      "dateCompleted": 1653261841588,
-      "completed": false
     }
   ],
   "users": [

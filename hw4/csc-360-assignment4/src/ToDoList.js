@@ -11,9 +11,10 @@ export default function ToDoList() {
     headers: {'Content-Type': 'application/json'},
     data: { id, title, desc, author, dateCreated, dateCompleted, completed }
   }))
-  const [removedTodo, removeTodo] = useResource((id, {todo}) => ({
-    url: `/todos/${id}`,
+  const [removedTodo, removeTodo] = useResource(({ id }) => ({
+    url: `/todos/${encodeURI(id)}`,
     method: 'delete',
+    headers: {'Content-Type': 'application/json'},
     data: { id }
   }))
   

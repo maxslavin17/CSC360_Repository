@@ -31,7 +31,7 @@ function todoReducer (state, action) {
       );
       return updatedTodos;
     case 'DELETE_TODO':
-      const oneLessTodo = action.todos.filter((todo) => todo.dateCreated !== action.dateCreated);
+      const oneLessTodo = action.todos.filter((todo) => todo.id !== action.id);
       return oneLessTodo;
     case 'FETCH_TODOS':
       return action.todos;
